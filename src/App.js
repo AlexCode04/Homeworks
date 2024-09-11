@@ -1,12 +1,10 @@
-import FirstApp from "./FirstApp";
+import {GifExpertApp} from "./FirstApp";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <FirstApp 
-        value={0}
-        />
+        <GifExpertApp />
       </header>
     </div>
   );

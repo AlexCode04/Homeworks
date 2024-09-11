@@ -1,30 +1,35 @@
-import { useState } from "react";
+import { useState } from "react"
 
-const FirstApp = ({ value }) => {
-    const [counter, setCounter] = useState(value);
+export const GifExpertApp = () => {
 
-    const handleAdd = () => {
-        setCounter(counter + 1);
-    };
+    const [categories, setCategories] = useState(['first category'])
+    const [category, setCategory] = useState('')
 
-    const handleSubstract = () => {
-        setCounter(counter - 1);
-    };
+    const onAddCategory = () => {
+        // setCategories([...categories, 'hola'])
+        setCategories( list => [...list, category])
+        setCategory('')
+    }
 
-    const handleReset = () => {
-        setCounter(value);
-    };
+    const onSetCategory = ( evt ) => {
+        setCategory( evt.target.value )
+    }
 
     return (
         <>
-            <h1>Counter</h1>
-            <span>{ counter }</span>
-            <br />
-            <button onClick={handleAdd}>+1</button>
-            <button onClick={handleSubstract}>-1</button>
-            <button onClick={handleReset}>Reset</button>
+            <h1>GifExpert</h1>
+            <input type="text" value={category} 
+                onChange={ (event) => onSetCategory(event) } />
+            <button onClick={ () => onAddCategory() }> Add Category </button>
+            <ol>
+                {
+                    categories.map(
+                        (category, key) => {
+                            return <li key={ key }> { category } </li>
+                        }
+                    )
+                }
+            </ol>
         </>
-    );
-};
-
-export default FirstApp;
+    )
+}
