@@ -1,35 +1,34 @@
 import { useState } from "react"
+import GifGrid from "./Components/GifGrid"
+import AddCategory from "./Components/AddCategory"
+import './Components/styles.css'
 
 export const GifExpertApp = () => {
 
-    const [categories, setCategories] = useState(['first category'])
-    const [category, setCategory] = useState('')
+    const [categories, setCategories] = useState([null])
 
-    const onAddCategory = () => {
-        // setCategories([...categories, 'hola'])
-        setCategories( list => [...list, category])
-        setCategory('')
-    }
-
-    const onSetCategory = ( evt ) => {
-        setCategory( evt.target.value )
+    const onAddCategory = ( category ) => {
+        if( category === '' || category === null ){
+            return
+        }else{
+            setCategories( list => [...list, category])
+        }
+        
     }
 
     return (
-        <>
+        <div className="contenedor-gifExpertApp">
             <h1>GifExpert</h1>
-            <input type="text" value={category} 
-                onChange={ (event) => onSetCategory(event) } />
-            <button onClick={ () => onAddCategory() }> Add Category </button>
+            <AddCategory onAddCategory={onAddCategory} />
             <ol>
                 {
                     categories.map(
                         (category, key) => {
-                            return <li key={ key }> { category } </li>
+                            return <GifGrid key={key} category={category} />
                         }
                     )
                 }
             </ol>
-        </>
+        </div>
     )
 }

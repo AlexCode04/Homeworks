@@ -1,0 +1,59 @@
+/* Estilos generales para la grid de gifs */
+.gif-grid {
+    margin: 20px 0;
+  }
+  
+  .gif-grid h3 {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Contenedor de la lista de gifs */
+  .gif-grid-list {
+    display: grid;
+    max-width:200px;
+    max-height: 200px;
+    padding: 60px;
+    gap: 20px;
+    justify-items: center;
+  }
+  
+  /* Estilos para cada gif */
+  .gif-item {
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .gif-item:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Estilo de la imagen del gif */
+  .gif-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Estilo para el título debajo del gif */
+  .gif-item p {
+    font-size: 14px;
+    color: #555;
+    text-align: center;
+    margin: 10px 0;
+    padding: 0 10px;
+  }
+  
+  .contenedor-gifExpertApp {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
