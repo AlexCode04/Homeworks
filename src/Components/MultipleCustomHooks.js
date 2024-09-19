@@ -5,11 +5,11 @@ import { useFetch } from "../Hooks/useFetch";
 export const MultipleCustomHooks = () => {
 
     const { counter, handleAdd } = useCounter(1);
-    const { data, isLoading, hasError } = useFetch(`https://api.breakingbadquotes.xyz/v1/quotes/${counter}`);
+    const { data, isLoading, hasError } = useFetch(`https://pokeapi.co/api/v2/pokemon-form/${counter}`);
 
     return (
         <div>
-            <h1>Breaking Bad Quotes</h1>
+            <h1>pokemon</h1>
             <hr />
             {
                 isLoading
@@ -18,8 +18,8 @@ export const MultipleCustomHooks = () => {
                         ? <div>Error: {hasError}</div>
                         : (
                             <blockquote>
-                                <p>{data[0].quote}</p>
-                                <footer>{data[0].author}</footer>
+                                <p>{data.name}</p>
+                                <img src={data.sprites.front_default} alt={data.name} />
                             </blockquote>
                         )
             }
@@ -27,7 +27,7 @@ export const MultipleCustomHooks = () => {
                 className="btn btn-primary"
                 onClick={handleAdd}
             >
-                Siguiente quote
+                Siguiente pokemon
             </button>
         </div>
     );
