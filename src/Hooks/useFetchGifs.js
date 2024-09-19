@@ -2,28 +2,28 @@ import { useState, useEffect } from 'react';
 import { getGifs }  from '../Helpers/getGifs';
 
 export default function useFetchGifs(category) {
-const [gifs, setGifs] = useState([]);
+  const [gifs, setGifs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); 
 
   useEffect(() => {
     const fetchGifs = async () => {
       if (category === '') {
-        setGifs([]);
+        setGifs([]); 
+        setIsLoading(false);
         return;
       } else {
+        setIsLoading(true); 
         const newGifs = await getGifs(category);
         setGifs(newGifs);
-        console.log(newGifs);
+        setIsLoading(false); 
       }
     };
 
     fetchGifs();
   }, [category]);
 
-  if (!category) {
-    return null;
-  }else{
-
-    return {
-      gifs: gifs,
-      isLoading: false
-  }}}
+  return {
+    gifs: gifs,
+    isLoading: isLoading
+  };
+}
