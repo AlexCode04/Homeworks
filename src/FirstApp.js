@@ -1,14 +1,10 @@
 import React from 'react';
 import { useCounter } from './Hooks/useCounter';
-import { useFetch } from './Hooks/useFetch';
 import { MultipleCustomHooks } from './Components/MultipleCustomHooks';
 
 const FirstApp = ({ value }) => {
     // Uso del hook useCounter
     const { counter, handleAdd, handleSubstract, handleReset } = useCounter(value);
-
-    // Uso del hook useFetch con la API de Breaking Bad Quotes
-    const { data, isLoading, hasError } = useFetch('https://api.breakingbadquotes.xyz/v1/quotes');
 
     return (
         <>
