@@ -1,12 +1,12 @@
 import React from 'react';
-import { Father } from './Components/Father';
+import { TodoApp } from './Components/TodoApp';
 
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Father />       
+        <TodoApp />       
       </header>
     </div>
   );
