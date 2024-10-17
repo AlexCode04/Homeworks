@@ -1,19 +1,48 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { increment, decrement, incrementBy } from './store/slices/counterSlice';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from './firebase/config'; 
+import { login, logout } from './store/slices/authSlice';
+import AuthPage from './pages/AuthPage'; 
+import HomePage from './pages/HomePage'; 
 
 const App = () => {
-  const counter = useSelector((state) => state.counter.counter);
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
+    const { status, email } = useSelector(state => state.auth); 
 
-  return (
-    <div>
-      <h1>Counter: {counter}</h1>
-      <button onClick={() => dispatch(increment())}>+1</button>
-      <button onClick={() => dispatch(decrement())}>-1</button>
-      <button onClick={() => dispatch(incrementBy(5))}>+5</button>
-    </div>
-  );
+    useEffect(() => {
+
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                
+                const { uid, email, displayName, photoURL } = user;
+                dispatch(login({ uid, email, displayName, photoURL }));
+            } else {
+               
+                dispatch(logout());
+            }
+        });
+
+        
+        return () => unsubscribe();
+    }, [dispatch]);
+
+    if (status === 'checking') {
+        return <h2>Loading...</h2>; 
+    }
+
+    return (
+        <div>
+            {status === 'authenticated' ? (
+                <>
+                    <h1>Bienvenido, {email}!</h1> {}
+                    <HomePage /> {}
+                </>
+            ) : (
+                <AuthPage />
+            )}
+        </div>
+    );
 };
 
 export default App;
