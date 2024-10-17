@@ -1,0 +1,85 @@
+/* Estilos globales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  /* Contenedor del contador */
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    animation: fadeIn 1s forwards; /* Animación de aparición */
+  }
+  
+  /* Contador */
+  .counter {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+  
+  /* Contenedor de los botones */
+  .buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Estilos de los botones */
+  button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #ccc; /* Color gris */
+    color: #333; /* Color de texto */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    animation: fadeIn 1.2s forwards; /* Animación de aparición */
+    margin-right: 20px; /* Espaciado entre botones */
+  }
+  
+  /* El último botón no necesita margen a la derecha */
+  button:last-child {
+    margin-right: 0;
+  }
+  
+  button:hover {
+    background-color: #bbb; /* Gris más oscuro al hacer hover */
+    transform: scale(1.05); /* Escala al pasar el cursor */
+  }
+  
+  button:active {
+    background-color: #999; /* Gris más oscuro cuando está activo */
+  }
+  
+  /* Animación de aparición */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px); /* Aparece desde abajo */
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0); /* Termina en su posición original */
+    }
+  }
+  
