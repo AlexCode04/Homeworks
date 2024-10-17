@@ -19,7 +19,6 @@ function Login() {
         alert("Campo de username vacio")
     }
   };
-  
 
   return (
     <main>
