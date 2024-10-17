@@ -8,6 +8,7 @@ const initialState = {
   lastVisitedPage: '/'
 };
 
+
 function reducer(state, action) {
   switch (action.type) {
     case 'LOGIN':

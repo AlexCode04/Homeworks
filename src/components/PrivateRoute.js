@@ -11,3 +11,4 @@ export function PrivateRoute({ children }) {
     ? children
     : <Navigate to="/login" state={{ from: location }} replace />;
 }
+
