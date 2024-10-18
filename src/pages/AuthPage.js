@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginWithEmailPassword } from '../store/thunks/loginThunk';
 import { registerWithEmailPassword } from '../store/thunks/registerThunk';
+import { googleLogin } from '../store/thunks/googleLoginThunk'; // Importa el thunk de Google
 
 const AuthPage = () => {
     const dispatch = useDispatch();
@@ -13,16 +14,18 @@ const AuthPage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (isRegister) {
-            // Dispatchea la acción de registro
             dispatch(registerWithEmailPassword({ email, password }));
         } else {
-            // Dispatchea la acción de login
             dispatch(loginWithEmailPassword({ email, password }));
         }
     };
 
+    const handleGoogleLogin = () => {
+        dispatch(googleLogin()); // Despacha el thunk para iniciar sesión con Google
+    };
+
     return (
-        <div>
+        <div className="container">
             <h2>{isRegister ? 'Register' : 'Login'}</h2>
             <form onSubmit={handleSubmit}>
                 <input
@@ -41,7 +44,10 @@ const AuthPage = () => {
                 />
                 <button type="submit">{isRegister ? 'Register' : 'Login'}</button>
             </form>
-            <button onClick={() => setIsRegister(!isRegister)}>
+            <button onClick={handleGoogleLogin} style={{ marginTop: '10px' }}>
+                Iniciar Sesión con Google
+            </button>
+            <button onClick={() => setIsRegister(!isRegister)} style={{ marginTop: '10px' }}>
                 {isRegister ? 'Switch to Login' : 'Switch to Register'}
             </button>
         </div>
